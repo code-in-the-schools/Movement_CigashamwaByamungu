@@ -1,24 +1,21 @@
 import pygame
 import os
 
-img_path = os.path.join(' RedPacman.png')
+img_path = os.path.join('RedPacman.png')
 
 class person (object):
-  def __init__(self):
-    pygame.sprite.Sprite.__init__(self)
+    def __init__(self):
+      pygame.sprite.Sprite.__init__(self)
 
+      person.image = pygame.image.load ("RedPacman.png")
+      self.image = person.image
 
-    person.image = pygame.image.load
-    (' RedPacman.png')
-    self.image = person.image
-    self.image = pygame.transform.scale(self.image(50,50))
+      self.x = 50
+      self.y = 50
+      self.hitbox = (self.x, self.y, 55, 55)
 
-    self.x = 50
-    self.y = 50
-    self.hitbox = (self.x, self.y, 55, 55)
-
-def draw(self, surface):
-  surface.blit(self.image,(self.x, self.y))
+    def draw (self, surface):
+      surface.blit(self.image,(self.x, self.y))
 
 
 pygame.init()
@@ -27,17 +24,41 @@ screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
 
 Sprite = person()
-clock = pygame.time.clock()
+clock = pygame.time.Clock()
 
 running = True
 while running:
 
   for event in pygame.event.get():
     if event.type == pygame.QUIT:
+
+      run = False
+    # stores keys pressed   
+    keys = pygame.key.get_pressed() 
+  
+    # if left arrow key is pressed  
+    if keys[pygame.K_LEFT] and x > 0: 
+     
+        x -= vel 
+  
+        # if left arrow key is pressed 
+    if keys[pygame.K_RIGHT] and x < 0:
+      x += vel 
+  
+        # if left arrow key is pressed 
+    if keys[pygame.K_UP] and y > 0: 
+ 
+        y -= vel 
+  
+        # if left arrow key is pressed 
+    if keys[pygame.K_DOWN] and y < 500: 
+        
+        y += vel 
+
       pygame.quit()
       running = False
 
-  screen.fill(255, 255, 255)
+  screen.fill((255, 255, 255))
   Sprite.draw(screen)
   pygame. display.update()
 
