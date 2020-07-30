@@ -17,6 +17,21 @@ class person (object):
     def draw (self, surface):
       surface.blit(self.image,(self.x, self.y))
 
+    def movement(self):
+      key = pygame.key.get_pressed()
+
+      if key[pygame.K_DOWN]:
+        self.y += 1
+
+      if key[pygame.K_UP]:
+        self.y -= 1
+
+      if key[pygame.K_LEFT]:
+        self.x -= 1
+
+      if key[pygame.K_RIGHT]:
+        self.x += 1
+
 
 pygame.init()
 screen_width = 600
@@ -29,38 +44,18 @@ clock = pygame.time.Clock()
 running = True
 while running:
 
+
   for event in pygame.event.get():
     if event.type == pygame.QUIT:
-
-      run = False
-    # stores keys pressed   
-    keys = pygame.key.get_pressed() 
-  
-    # if left arrow key is pressed  
-    if keys[pygame.K_LEFT] and x > 0: 
-     
-        x -= vel 
-  
-        # if left arrow key is pressed 
-    if keys[pygame.K_RIGHT] and x < 0:
-      x += vel 
-  
-        # if left arrow key is pressed 
-    if keys[pygame.K_UP] and y > 0: 
- 
-        y -= vel 
-  
-        # if left arrow key is pressed 
-    if keys[pygame.K_DOWN] and y < 500: 
-        
-        y += vel 
-
       pygame.quit()
       running = False
 
   screen.fill((255, 255, 255))
+
+  person.movement(Sprite)
+
   Sprite.draw(screen)
-  pygame. display.update()
+
+  pygame.display.update()
 
   clock.tick(60)
-
